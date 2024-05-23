@@ -1,0 +1,74 @@
+# Allgemeine Dateien
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+*.venv
+venv/
+ENV/
+env/
+env.bak/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# FastAPI
+backend/.env
+backend/.venv
+backend/env/
+backend/env.bak/
+backend/instance/
+backend/.python-version
+backend/app/__pycache__/
+
+# Virtualenv
+Pipfile.lock
+poetry.lock
+
+# PostgreSQL
+pgdata
+
+# Frontend
+frontend/budget-frontend/node_modules
+frontend/budget-frontend/.next/
+frontend/budget-frontend/out/
+frontend/budget-frontend/build
+frontend/budget-frontend/.cache
+frontend/budget-frontend/.env
+frontend/budget-frontend/.env.local
+frontend/budget-frontend/.env.development.local
+frontend/budget-frontend/.env.test.local
+frontend/budget-frontend/.env.production.local
+frontend/budget-frontend/npm-debug.log*
+frontend/budget-frontend/yarn-debug.log*
+frontend/budget-frontend/yarn-error.log*
+
+# Docker
+*.env
+docker-compose.override.yml
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*~
+
+# OS generated files
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+desktop.ini
+*.~lock.*
