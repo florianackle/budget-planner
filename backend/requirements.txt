@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+asyncpg
+databases
+sqlalchemy
