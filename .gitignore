@@ -39,19 +39,19 @@ poetry.lock
 pgdata
 
 # Frontend
-frontend/budget-frontend/node_modules
-frontend/budget-frontend/.next/
-frontend/budget-frontend/out/
-frontend/budget-frontend/build
-frontend/budget-frontend/.cache
-frontend/budget-frontend/.env
-frontend/budget-frontend/.env.local
-frontend/budget-frontend/.env.development.local
-frontend/budget-frontend/.env.test.local
-frontend/budget-frontend/.env.production.local
-frontend/budget-frontend/npm-debug.log*
-frontend/budget-frontend/yarn-debug.log*
-frontend/budget-frontend/yarn-error.log*
+frontend/node_modules
+frontend/.next/
+frontend/out/
+frontend/build
+frontend/.cache
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
 
 # Docker
 *.env
