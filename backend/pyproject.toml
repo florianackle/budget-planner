@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "budget-planner-backend"
+version = "0.1.0"
+description = "Backend for Budget Planner"
+authors = ["Florian Ackle"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.111.0"
+uvicorn = {extras = ["standard"], version = "^0.30.0"}
+sqlalchemy = "^2.0.30"
+psycopg2-binary = "^2.9.9"
+alembic = "^1.13.1"
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
