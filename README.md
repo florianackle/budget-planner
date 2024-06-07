@@ -21,6 +21,6 @@ Sonst... lass die Finger davon :point_left: of it.
 
 # :date: Last Update
 
-> 29.05.2024
+> 07.06.2024
 
 # :rocket: Have fun!
