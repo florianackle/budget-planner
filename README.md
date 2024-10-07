@@ -4,7 +4,7 @@ Schulprojekt von Florian Ackle
 
 # :bookmark: version
 
-(check release-notes)
+v0.1
 
 # :construction_worker: starting point
 
@@ -21,6 +21,6 @@ Sonst... lass die Finger davon :point_left: of it.
 
 # :date: Last Update
 
-> 07.06.2024
+> xxx
 
 # :rocket: Have fun!
