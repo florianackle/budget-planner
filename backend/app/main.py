@@ -1,20 +1,16 @@
-from fastapi import FastAPI, Depends
-from sqlalchemy.orm import Session
-from . import database
+# main.py
+from fastapi import FastAPI
+from .routers import users, budgets, expenses, incomes, categories
+from .database import engine, Base
+
+# Create all tables
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-database.Base.metadata.create_all(bind=database.engine)
-
-
-def get_db():
-    db = database.SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-
-@app.get("/")
-def get_root(db: Session = Depends(get_db)):
-    return {"Hello": "World"}
+# Include routers
+app.include_router(users.router)
+app.include_router(budgets.router)
+app.include_router(expenses.router)
+app.include_router(incomes.router)
+app.include_router(categories.router)
