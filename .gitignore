@@ -28,7 +28,7 @@ backend/.venv
 backend/env/
 backend/env.bak/
 backend/instance/
-backend/.python-version
+.python-version
 backend/app/__pycache__/
 
 # Virtualenv
