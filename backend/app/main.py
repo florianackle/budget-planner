@@ -1,5 +1,5 @@
-# main.py
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from .routers import users, budgets, expenses, incomes, categories
 from .database import engine, Base
 
@@ -7,6 +7,21 @@ from .database import engine, Base
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+# Define frontend as allowed origin
+origins = [
+    "http://localhost:3000",  # React dev
+    "http://127.0.0.1:3000",  # React dev
+]
+
+# CORS Middleware hinzufügen
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods (GET, POST, OPTIONS, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
 
 # Include routers
 app.include_router(users.router)

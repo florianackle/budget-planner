@@ -21,5 +21,5 @@ def login_user(user: UserCreate, db: Session = Depends(get_db)):
     db_user = authenticate_user(db, username=user.username, password=user.password)
     if not db_user:
         raise HTTPException(status_code=401, detail="Invalid username or password")
-    # Hier kann später eine JWT-Token-Logik hinzugefügt werden
+    # TODO:  JWT-Token-Logik hinzufügen
     return {"message": "Login successful"}
