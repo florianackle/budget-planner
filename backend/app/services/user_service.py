@@ -1,7 +1,6 @@
 from sqlalchemy.orm import Session
 from .. import models, schemas
 from passlib.context import CryptContext
-from fastapi import HTTPException
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -25,7 +24,6 @@ def create_user(db: Session, user: schemas.UserCreate):
 
 def register_user(db: Session, user: schemas.UserCreate):
     db_user = create_user(db=db, user=user)
-
     return db_user
 
 def authenticate_user(db: Session, username: str, password: str):

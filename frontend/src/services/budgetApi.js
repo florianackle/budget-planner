@@ -2,10 +2,17 @@ import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
-export const getUserBudget = async (username) => {
+// Hilfsfunktion, um das JWT-Token zu holen
+const getAuthHeader = () => {
+  const token = localStorage.getItem('token');
+  return token ? `Bearer ${token}` : '';
+};
+
+// Budget des Benutzers abfragen mit JWT
+export const getUserBudget = async () => {
   try {
     const response = await axios.get(`${API_URL}/budget`, {
-      params: { username }
+      headers: { Authorization: getAuthHeader() },
     });
     return response.data;
   } catch (error) {
@@ -14,9 +21,12 @@ export const getUserBudget = async (username) => {
   }
 };
 
-export const createUserBudget = async (username) => {
+// Budget für den Benutzer erstellen mit JWT
+export const createUserBudget = async () => {
   try {
-    const response = await axios.post(`${API_URL}/budget`, { username });
+    const response = await axios.post(`${API_URL}/budget`, {}, {
+      headers: { Authorization: getAuthHeader() },
+    });
     return response.data;
   } catch (error) {
     console.error('Fehler beim Erstellen des Budgets:', error.response || error.message);

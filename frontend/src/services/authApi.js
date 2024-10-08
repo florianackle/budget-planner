@@ -14,6 +14,7 @@ export const registerUser = async (user) => {
 export const loginUser = async (user) => {
   try {
     const response = await axios.post(`${API_URL}/users/login`, user);
+    localStorage.setItem('token', response.data.access_token);
     return response.data;
   } catch (error) {
     throw error.response?.data?.detail || 'Login fehlgeschlagen';
