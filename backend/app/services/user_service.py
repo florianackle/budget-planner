@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from .. import models, schemas
 from passlib.context import CryptContext
+from ..services.budget_service import create_budget_for_user
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -19,6 +20,10 @@ def create_user(db: Session, user: schemas.UserCreate):
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
+
+    # create budget for newly created user
+    create_budget_for_user(db=db, user_id=db_user.id)
+
     return db_user
 
 def authenticate_user(db: Session, username: str, password: str):
