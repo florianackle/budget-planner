@@ -9,6 +9,6 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     id: int
-    budgets: Optional[List[int]] = []
+    budget: Optional[int]
 
     model_config = ConfigDict(from_attributes=True)

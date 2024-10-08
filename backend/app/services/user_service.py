@@ -5,14 +5,18 @@ from ..services.budget_service import create_budget_for_user
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
+
 def get_password_hash(password):
     return pwd_context.hash(password)
+
 
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
+
 def get_user_by_username(db: Session, username: str):
     return db.query(models.User).filter(models.User.username == username).first()
+
 
 def create_user(db: Session, user: schemas.UserCreate):
     hashed_password = get_password_hash(user.password)
@@ -21,15 +25,13 @@ def create_user(db: Session, user: schemas.UserCreate):
     db.commit()
     db.refresh(db_user)
 
-    # create budget for newly created user
+    return db_user
+
+
+def register_user(db: Session, user: schemas.UserCreate):
+    db_user = create_user(db=db, user=user)
+
+    # create budget for user after user is created
     create_budget_for_user(db=db, user_id=db_user.id)
 
     return db_user
-
-def authenticate_user(db: Session, username: str, password: str):
-    user = get_user_by_username(db, username)
-    if not user:
-        return False
-    if not verify_password(password, user.hashed_password):
-        return False
-    return user

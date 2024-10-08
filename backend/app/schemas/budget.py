@@ -2,7 +2,6 @@ from pydantic import BaseModel, ConfigDict
 from typing import List, Optional
 
 class BudgetBase(BaseModel):
-    name: str
     total_amount: int = 0  # set default 0
 
 class BudgetCreate(BudgetBase):
