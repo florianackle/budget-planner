@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from ..schemas import Budget, BudgetCreate
-from ..services.budget_service import get_user_budget, update_budget, delete_budget
+from ..services.budget_service import get_user_budget, create_budget_for_user, update_budget, delete_budget
 from ..dependencies import get_db, get_current_user
 
 router = APIRouter(
-    prefix="/budgets",
-    tags=["budgets"],
+    prefix="/budget",
+    tags=["budget"],
 )
 
 @router.get("/", response_model=Budget)
@@ -16,6 +16,11 @@ def read_user_budget(db: Session = Depends(get_db), current_user = Depends(get_c
     if not budget:
         raise HTTPException(status_code=404, detail="No budget found for the user.")
     return budget
+
+@router.post("/", response_model=Budget)
+def create_new_budget(db: Session = Depends(get_db), current_user = Depends(get_current_user)):
+    # Create a new budget for the current user
+    return create_budget_for_user(db=db, user_id=current_user.id)
 
 @router.put("/", response_model=Budget)
 def update_existing_budget(budget: BudgetCreate, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
