@@ -12,7 +12,10 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await loginUser({ username, password });
+      const userData = await loginUser({ username, password });
+      // Save JWT-Token and Username in LocalStorage
+      localStorage.setItem('token', userData.access_token);
+      localStorage.setItem('username', username);
       navigate('/dashboard');
     } catch (error) {
       setErrorMessage(error);
