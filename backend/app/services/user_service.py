@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 from .. import models, schemas
 from passlib.context import CryptContext
 from ..services.budget_service import create_budget_for_user
+from fastapi import HTTPException
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -32,6 +33,9 @@ def register_user(db: Session, user: schemas.UserCreate):
     db_user = create_user(db=db, user=user)
 
     # create budget for user after user is created
-    create_budget_for_user(db=db, user_id=db_user.id)
+    try:
+        create_budget_for_user(db=db, user_id=db_user.id)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Budget creation failed")
 
     return db_user

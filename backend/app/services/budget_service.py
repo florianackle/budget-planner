@@ -2,11 +2,12 @@ from sqlalchemy.orm import Session
 from .. import models, schemas
 from fastapi import HTTPException
 
-def get_current_user(db: Session, username: str):
-    user = db.query(models.User).filter(models.User.username == username).first()
+def get_current_user(db: Session, user_id: int):
+    user = db.query(models.User).filter(models.User.id == user_id).first()
     if not user:
-        raise HTTPException(status_code=401, detail="Invalid credentials")
+        raise HTTPException(status_code=401, detail="Invalid user ID")
     return user
+
 
 def create_budget_for_user(db: Session, user_id: int):
     db_budget = models.Budget(total_amount=0, owner_id=user_id)
