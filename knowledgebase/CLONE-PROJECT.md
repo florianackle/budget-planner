@@ -5,14 +5,14 @@ Clone the project
 ```
 
 ### start database
-Go to the root directory
+Go to the root directory an rund
 ```bash
   docker-compose up --build
 ```
 
 
 ### start backend
-Go to the backend directory
+Go to the backend directory (/backend)
 
 ```bash
   cd budget-planner\backend
@@ -24,6 +24,12 @@ Install dependencies
   poetry install
 ```
 
+Create .env file
+
+```bash
+  cp .venv .env
+```
+
 Start the server
 
 ```bash
@@ -31,7 +37,7 @@ Start the server
 ```
 
 ### start frontend
-Go to the frontend directory
+Go to the frontend directory (/frontend)
 
 ```bash
   cd budget-planner\frontend
@@ -48,3 +54,9 @@ Start the server
 ```bash
   npm start
 ```
+
+### usage:
+
+After running the commands above you can connect to the front- and backend
+- Frontend: http://localhost:3000
+- Backend: http://localhost:8000/docs
