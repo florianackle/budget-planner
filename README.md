@@ -2,15 +2,15 @@
 
 Schulprojekt von Florian Ackle
 
-# :bookmark: version
+# :bookmark: Version
 
 v0.1
 
-# :construction_worker: starting point
+# :construction_worker: Starting point
 
 Als Software-Entwickler muss man in der Lage sein, ein Softwareprojekt auf- und umzusetzen. Dabei ist es wichtig, dass es von Beginn weg sauber strukturiert, dokumentiert und getestet wird. Um das zu verinnerlichen, ist es am besten, es immer wieder zu machen und von den vorherigen Erfahrungen zu profitieren.
 
-# :sparkles: what can the budget planner do?
+# :sparkles: What can the budget planner do?
 
 Das Projekt ist wie folgt aufgebaut:
 ### Frontend
@@ -31,12 +31,12 @@ Der Budget-Planner unterstützt folgende Funktionen:
 # :rocket: clone and run project
 [clone and run project](knowledgebase/CLONE-PROJECT.md)
 
-# :hourglass: if i had more time
+# :hourglass: If i had more time
 
 Folgende Ergänzungen würde ich noch machen:
 - 
 
-# :lock: copyright
+# :lock: Copyright
 
 Bitte kopiere diesen Code nicht... ausser du gibst mir einen :cookie:
 </br>
