@@ -2,6 +2,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .routers import users, budgets, expenses, incomes, categories
 from .database import engine, Base
+from .seeders.category import seed_categories
+from sqlalchemy.orm import Session
+from .database import SessionLocal
 
 # Create all tables
 Base.metadata.create_all(bind=engine)
@@ -29,3 +32,14 @@ app.include_router(budgets.router)
 app.include_router(expenses.router)
 app.include_router(incomes.router)
 app.include_router(categories.router)
+
+# Initialize the database and seed predefined categories
+def init_db():
+    db: Session = SessionLocal()
+    seed_categories(db)
+    db.close()
+
+# Call init_db when the application starts
+@app.on_event("startup")
+def on_startup():
+    init_db()
