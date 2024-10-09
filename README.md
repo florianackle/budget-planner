@@ -31,7 +31,7 @@ Der Budget-Planner unterstützt folgende Funktionen:
 # :rocket: clone and run project
 [clone and run project](knowledgebase/CLONE-PROJECT.md)
 
-# :hourglass: If i had more time
+# :hourglass: if i had more time
 
 Folgende Ergänzungen würde ich noch machen:
 - 
