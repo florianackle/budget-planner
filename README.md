@@ -17,10 +17,10 @@ Als Software-Entwickler muss man in der Lage sein, ein Softwareprojekt auf- und 
 
 Bitte kopiere diesen Code nicht... ausser du gibst mir einen :cookie:
 </br>
-Sonst... lass die Finger davon :point_left: of it.
+Sonst... lass die Finger davon :point_left:.
 
 # :date: Last Update
 
-> 07.10.2024
+> 09.10.2024
 
 # :rocket: Have fun!
