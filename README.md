@@ -46,4 +46,4 @@ Sonst... lass die Finger davon :point_left:.
 
 > 09.10.2024
 
-# :rocket: Have fun!
+# :tada: Have fun!
