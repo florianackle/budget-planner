@@ -1,5 +1,7 @@
 from pydantic import BaseModel, ConfigDict
 from typing import List, Optional
+from .income import Income
+from .expense import Expense
 
 class BudgetBase(BaseModel):
     total_amount: int = 0  # set default 0
@@ -9,7 +11,8 @@ class BudgetCreate(BudgetBase):
 
 class Budget(BudgetBase):
     id: int
-    expenses: Optional[List[int]] = []
-    incomes: Optional[List[int]] = []
+    expenses: Optional[List[Income]] = []
+    incomes: Optional[List[Expense]] = []
 
-    model_config = ConfigDict(from_attributes=True)
+    class Config:
+        orm_mode = True
