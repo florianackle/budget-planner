@@ -8,7 +8,7 @@ import AddIncomeExpense from './AddIncomeExpense'; // Import the AddIncomeExpens
 const Dashboard = () => {
   const [budget, setBudget] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [username, setUsername] = useState(localStorage.getItem('username'));
+  const [username] = useState(localStorage.getItem('username'));
   const [snackbarOpen, setSnackbarOpen] = useState(false);  // State for Snackbar open/close
   const [snackbarMessage, setSnackbarMessage] = useState('');  // Message to show in Snackbar
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');  // Snackbar type (success, error, etc.)

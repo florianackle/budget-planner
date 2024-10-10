@@ -10,9 +10,16 @@ router = APIRouter(
     tags=["incomes"],
 )
 
+
 @router.post("/", response_model=Income)
-def create_new_income(income: IncomeCreate, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
-    return create_income(db=db, income=income, user_id=current_user.id)
+def create_new_income(income: IncomeCreate, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
+    # Check if user has a budget
+    if not current_user.budget:
+        raise HTTPException(status_code=400, detail="User has no budget")
+
+    # Create income with user_id and budget_id
+    return create_income(db=db, income=income, user_id=current_user.id, budget_id=current_user.budget.id)
+
 
 @router.get("/", response_model=List[Income])
 def read_all_incomes(skip: int = 0, limit: int = 10, db: Session = Depends(get_db), current_user = Depends(get_current_user)):

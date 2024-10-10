@@ -9,8 +9,8 @@ def get_current_user(db: Session, username: str):
         raise HTTPException(status_code=401, detail="Invalid credentials")
     return user
 
-def create_income(db: Session, income: schemas.IncomeCreate, user_id: int):
-    db_income = models.Income(**income.dict(), owner_id=user_id)
+def create_income(db: Session, income: schemas.IncomeCreate, user_id: int, budget_id: int):
+    db_income = models.Income(**income.dict(), owner_id=user_id, budget_id=budget_id)
     db.add(db_income)
     db.commit()
     db.refresh(db_income)

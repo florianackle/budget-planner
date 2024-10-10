@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Switch, TextField, MenuItem, Box } from '@mui/material';
 import { getCategories } from '../services/categoryService';
+import {addIncome, addExpense, getUserBudget} from '../services/budgetApi';
 
 const AddIncomeExpense = ({ open, handleClose, handleSubmit }) => {
   const [isIncome, setIsIncome] = useState(true);
@@ -31,11 +32,38 @@ const AddIncomeExpense = ({ open, handleClose, handleSubmit }) => {
     }
   };
 
-  const onSubmit = () => {
-    handleSubmit({ isIncome, description, amount, category });
+  const onSubmit = async () => {
+  const username = localStorage.getItem('username');  // Get username from local storage
+
+  console.log("Username retrieved from localStorage: ", username);  // Debugging
+
+  if (!username) {
+    console.error("User ist möglicherweise nicht eingeloggt.");
+    return;
+  }
+
+  try {
+    const budget = await getUserBudget(username);  // Fetch budget to get the budget_id
+    const data = {
+      description,
+      amount,
+      category_id: category,
+      budget_id: budget.id  // Add budget_id to the request data
+    };
+
+    if (isIncome) {
+      await addIncome(data, username);  // Pass username to addIncome
+    } else {
+      await addExpense(data, username);  // Pass username to addExpense
+    }
+
+    handleSubmit(data);  // Handle success after API call
     resetForm();  // Reset form fields after submission
     handleClose();  // Close the dialog
-  };
+  } catch (error) {
+    console.error("Fehler beim Hinzufügen der Einnahme/Ausgabe:", error);
+  }
+};
 
   // When the dialog is closed, reset the form fields
   const handleDialogClose = () => {

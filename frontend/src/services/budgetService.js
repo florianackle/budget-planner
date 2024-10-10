@@ -1,4 +1,4 @@
-import { getUserBudget, createUserBudget } from './budgetApi';
+import { createUserBudget } from './budgetApi';
 
 // Function to create a budget and update the budget state
 export const handleCreateBudget = async (username, setBudget, setSnackbarMessage, setSnackbarSeverity, setSnackbarOpen) => {

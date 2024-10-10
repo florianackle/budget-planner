@@ -9,12 +9,13 @@ def get_current_user(db: Session, username: str):
         raise HTTPException(status_code=401, detail="Invalid credentials")
     return user
 
-def create_expense(db: Session, expense: schemas.ExpenseCreate, user_id: int):
-    db_expense = models.Expense(**expense.dict(), owner_id=user_id)
+def create_expense(db: Session, expense: schemas.ExpenseCreate, user_id: int, budget_id: int):
+    db_expense = models.Expense(**expense.dict(), owner_id=user_id, budget_id=budget_id)
     db.add(db_expense)
     db.commit()
     db.refresh(db_expense)
     return db_expense
+
 
 def get_expenses(db: Session, user_id: int, skip: int = 0, limit: int = 10):
     return db.query(models.Expense).filter(models.Expense.owner_id == user_id).offset(skip).limit(limit).all()

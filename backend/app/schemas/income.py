@@ -6,7 +6,7 @@ class IncomeBase(BaseModel):
     category_id: int
 
 class IncomeCreate(IncomeBase):
-    pass
+    budget_id: int
 
 class Income(IncomeBase):
     id: int

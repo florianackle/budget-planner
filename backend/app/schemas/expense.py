@@ -6,7 +6,7 @@ class ExpenseBase(BaseModel):
     category_id: int
 
 class ExpenseCreate(ExpenseBase):
-    pass
+    budget_id: int
 
 class Expense(ExpenseBase):
     id: int

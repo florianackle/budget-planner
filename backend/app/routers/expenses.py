@@ -11,8 +11,14 @@ router = APIRouter(
 )
 
 @router.post("/", response_model=Expense)
-def create_new_expense(expense: ExpenseCreate, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
-    return create_expense(db=db, expense=expense, user_id=current_user.id)
+def create_new_expense(expense: ExpenseCreate, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
+    # Check if user has budget
+    if not current_user.budget:
+        raise HTTPException(status_code=400, detail="User has no budget")
+
+    # Create expense with user_id and budget_id
+    return create_expense(db=db, expense=expense, user_id=current_user.id, budget_id=current_user.budget.id)
+
 
 @router.get("/", response_model=List[Expense])
 def read_all_expenses(skip: int = 0, limit: int = 10, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
