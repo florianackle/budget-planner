@@ -4,6 +4,7 @@ import { getUserBudget } from '../services/budgetApi';
 import { handleCreateBudget } from '../services/budgetService';  // Import the external function
 import CustomSnackbar from './CustomSnackbar';  // Import the snackbar component
 import AddIncomeExpense from './AddIncomeExpense'; // Import the AddIncomeExpense component
+import IncomeExpenseTable from './IncomeExpenseTable'; // Import the table component
 
 const Dashboard = () => {
   const [budget, setBudget] = useState(null);
@@ -76,7 +77,7 @@ const Dashboard = () => {
       <Grid item xs={12} md={6} lg={4}>
         {budget ? (
           <>
-            {/* Budget vorhanden */}
+            {/* User has a budget */}
             <Typography variant="h4" component="h2" gutterBottom align="center">
               Dein aktuelles Budget
             </Typography>
@@ -94,10 +95,16 @@ const Dashboard = () => {
                 </Button>
               </Box>
             </Paper>
+
+            {/* Table for incomes and expenses */}
+            <Box mt={3}>
+              <IncomeExpenseTable />
+            </Box>
+
           </>
         ) : (
           <>
-            {/* Kein Budget vorhanden */}
+            {/* User has no budget */}
             <Typography variant="h2" component="h2" gutterBottom align="center">
               Hi {username}! 💖
             </Typography>
@@ -115,7 +122,7 @@ const Dashboard = () => {
             </Grid>
           </>
         )}
-        {/* AddIncomeExpense Dialog */}
+        {/* AddIncomeExpense dialog */}
         <AddIncomeExpense
           open={dialogOpen}
           handleClose={handleDialogClose}
