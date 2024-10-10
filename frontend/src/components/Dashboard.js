@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Typography, CircularProgress, Paper, Grid } from '@mui/material';
+import { Button, Typography, CircularProgress, Paper, Grid, Box } from '@mui/material';
 import { getUserBudget } from '../services/budgetApi';
 import { handleCreateBudget } from '../services/budgetService';  // Import the external function
 import CustomSnackbar from './CustomSnackbar';  // Import the snackbar component
+import AddIncomeExpense from './AddIncomeExpense'; // Import the AddIncomeExpense component
 
 const Dashboard = () => {
   const [budget, setBudget] = useState(null);
@@ -11,6 +12,8 @@ const Dashboard = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);  // State for Snackbar open/close
   const [snackbarMessage, setSnackbarMessage] = useState('');  // Message to show in Snackbar
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');  // Snackbar type (success, error, etc.)
+  const [dialogOpen, setDialogOpen] = useState(false);  // State for opening AddIncomeExpense dialog
+
 
   useEffect(() => {
     const fetchBudget = async () => {
@@ -27,6 +30,25 @@ const Dashboard = () => {
     fetchBudget();
   }, [username]);
 
+  // Handler for opening the AddIncomeExpense dialog
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+  };
+
+  // Handler for closing the AddIncomeExpense dialog
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
+
+  // Handler for submitting new income or expense
+  const handleAddIncomeExpense = (data) => {
+    console.log('Neue Einnahme/Ausgabe hinzugefügt: ', data);
+    setSnackbarMessage('Einnahme/Ausgabe erfolgreich hinzugefügt!');
+    setSnackbarSeverity('success');
+    setSnackbarOpen(true);
+    handleDialogClose();
+  };
+
   if (loading) {
     return (
       <Grid container justifyContent="center" alignItems="center" style={{ minHeight: '100vh' }}>
@@ -40,15 +62,28 @@ const Dashboard = () => {
       <Grid item xs={12} md={6} lg={4}>
         {budget ? (
           <>
+            {/* Budget vorhanden */}
             <Typography variant="h4" component="h2" gutterBottom align="center">
-              dein aktuelles Budget
+              Dein aktuelles Budget
             </Typography>
             <Paper elevation={3} sx={{ padding: 2 }}>
-              <Typography variant="h5" align="center">CHF {budget.total_amount}</Typography>
+              {/* Flexbox-Container, um den Betrag und den Button nebeneinander zu platzieren */}
+              <Box display="flex" justifyContent="space-between" alignItems="center">
+                <Typography variant="h5" align="center">CHF {budget.total_amount}</Typography>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleDialogOpen}
+                  style={{ marginLeft: '10px' }}
+                >
+                  Neue Einnahme/Ausgabe
+                </Button>
+              </Box>
             </Paper>
           </>
         ) : (
           <>
+            {/* Kein Budget vorhanden */}
             <Typography variant="h2" component="h2" gutterBottom align="center">
               Hi {username}! 💖
             </Typography>
@@ -61,11 +96,18 @@ const Dashboard = () => {
                 color="primary"
                 onClick={() => handleCreateBudget(username, setBudget, setSnackbarMessage, setSnackbarSeverity, setSnackbarOpen)}
               >
-                Get Started
+                Budget erstellen
               </Button>
             </Grid>
           </>
         )}
+        {/* AddIncomeExpense Dialog */}
+        <AddIncomeExpense
+          open={dialogOpen}
+          handleClose={handleDialogClose}
+          handleSubmit={handleAddIncomeExpense}
+        />
+        {/* Snackbar for feedback */}
         <CustomSnackbar
           open={snackbarOpen}
           message={snackbarMessage}
