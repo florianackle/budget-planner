@@ -41,13 +41,27 @@ const Dashboard = () => {
   };
 
   // Handler for submitting new income or expense
-  const handleAddIncomeExpense = (data) => {
+  const handleAddIncomeExpense = async (data) => {
     console.log('Neue Einnahme/Ausgabe hinzugefügt: ', data);
     setSnackbarMessage('Einnahme/Ausgabe erfolgreich hinzugefügt!');
     setSnackbarSeverity('success');
     setSnackbarOpen(true);
+
+    // Reload the budget after adding a new income/expense
+    const fetchBudget = async () => {
+      try {
+        const response = await getUserBudget(username);
+        setBudget(response);  // Update the budget with the new value
+      } catch (error) {
+        console.error('Error fetching updated budget:', error);
+      }
+    };
+
+    await fetchBudget();  // Fetch updated budget after submission
     handleDialogClose();
   };
+
+
 
   if (loading) {
     return (
