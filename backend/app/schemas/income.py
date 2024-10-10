@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import BaseModel, ConfigDict
 
 class IncomeBase(BaseModel):
@@ -10,6 +12,7 @@ class IncomeCreate(IncomeBase):
 
 class Income(IncomeBase):
     id: int
+    created_at: datetime
     budget_id: int
     owner_id: int
 

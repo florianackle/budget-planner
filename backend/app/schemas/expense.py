@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import BaseModel, ConfigDict
 
 class ExpenseBase(BaseModel):
@@ -10,6 +12,7 @@ class ExpenseCreate(ExpenseBase):
 
 class Expense(ExpenseBase):
     id: int
+    created_at: datetime
     budget_id: int
     owner_id: int
 
