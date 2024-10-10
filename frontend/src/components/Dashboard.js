@@ -14,8 +14,9 @@ const Dashboard = () => {
   const [snackbarMessage, setSnackbarMessage] = useState('');  // Message to show in Snackbar
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');  // Snackbar type (success, error, etc.)
   const [dialogOpen, setDialogOpen] = useState(false);  // State for opening AddIncomeExpense dialog
+  const [tableKey, setTableKey] = useState(0);  // State to force refresh of the table
 
-
+  // Fetch the user's budget
   useEffect(() => {
     const fetchBudget = async () => {
       try {
@@ -41,6 +42,11 @@ const Dashboard = () => {
     setDialogOpen(false);
   };
 
+  // Handler for refreshing the table
+  const refreshTable = () => {
+    setTableKey(prevKey => prevKey + 1); // Increment the key to force table reload
+  };
+
   // Handler for submitting new income or expense
   const handleAddIncomeExpense = async (data) => {
     console.log('Neue Einnahme/Ausgabe hinzugefügt: ', data);
@@ -59,10 +65,9 @@ const Dashboard = () => {
     };
 
     await fetchBudget();  // Fetch updated budget after submission
+    refreshTable(); // Refresh the table after adding income/expense
     handleDialogClose();
   };
-
-
 
   if (loading) {
     return (
@@ -98,7 +103,7 @@ const Dashboard = () => {
 
             {/* Table for incomes and expenses */}
             <Box mt={3}>
-              <IncomeExpenseTable />
+              <IncomeExpenseTable key={tableKey} /> {/* Add key to refresh the table */}
             </Box>
 
           </>
@@ -127,6 +132,7 @@ const Dashboard = () => {
           open={dialogOpen}
           handleClose={handleDialogClose}
           handleSubmit={handleAddIncomeExpense}
+          refreshTable={refreshTable} // Pass refreshTable to refresh the table
         />
         {/* Snackbar for feedback */}
         <CustomSnackbar

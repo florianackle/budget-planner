@@ -3,7 +3,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Switch, Text
 import { getCategories } from '../services/categoryService';
 import { addIncome, addExpense, getUserBudget } from '../services/budgetApi';
 
-const AddIncomeExpense = ({ open, handleClose, handleSubmit }) => {
+const AddIncomeExpense = ({ open, handleClose, handleSubmit, refreshTable }) => {
   const [isIncome, setIsIncome] = useState(true);
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
@@ -81,6 +81,7 @@ const AddIncomeExpense = ({ open, handleClose, handleSubmit }) => {
       }
 
       handleSubmit(data);  // Handle success after API call
+      refreshTable(); // Call refreshTable to update the IncomeExpenseTable
       resetForm();  // Reset form fields after submission
       handleClose();  // Close the dialog
     } catch (error) {
