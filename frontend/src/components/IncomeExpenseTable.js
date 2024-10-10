@@ -1,9 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Chip, Select, MenuItem, FormControl, InputLabel, Box } from '@mui/material';
+import { makeStyles } from '@mui/styles'; // Import makeStyles
 import { getIncomes, getExpenses } from '../services/incomeExpenseApi'; // API calls for fetching income/expenses
 import { getCategories } from '../services/categoryService'; // API call for fetching categories
 
+// Define custom styles using makeStyles
+const useStyles = makeStyles((theme) => ({
+  tableHeader: {
+    fontWeight: 'bold',
+    backgroundColor: '#f5f5f5',
+  },
+  incomeRow: {
+    backgroundColor: '#e0fae4',
+  },
+  expenseRow: {
+    backgroundColor: '#ffebee',
+  },
+}));
+
 const IncomeExpenseTable = () => {
+  const classes = useStyles(); // Use custom styles
   const [incomes, setIncomes] = useState([]);
   const [expenses, setExpenses] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -17,10 +33,17 @@ const IncomeExpenseTable = () => {
       const fetchedIncomes = await getIncomes(username);
       const fetchedExpenses = await getExpenses(username);
       const fetchedCategories = await getCategories();
+
+      // Add isIncome property to the fetched expenses
+      const expensesWithFlag = fetchedExpenses.map(expense => ({
+        ...expense,
+        isIncome: false // Set isIncome to false for expenses
+      }));
+
       setIncomes(fetchedIncomes);
-      setExpenses(fetchedExpenses);
+      setExpenses(expensesWithFlag); // Set the updated expenses
       setCategories(fetchedCategories);
-      setFilteredData([...fetchedIncomes, ...fetchedExpenses]); // Initially show all data
+      setFilteredData([...fetchedIncomes, ...expensesWithFlag]); // Initially show all data
     };
     fetchData();
   }, []);
@@ -85,19 +108,17 @@ const IncomeExpenseTable = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Beschreibung</TableCell>
-              <TableCell>Betrag</TableCell>
-              <TableCell>Datum</TableCell>
-              <TableCell>Kategorie</TableCell>
+              <TableCell className={classes.tableHeader}>Beschreibung</TableCell>
+              <TableCell className={classes.tableHeader}>Betrag</TableCell>
+              <TableCell className={classes.tableHeader}>Datum</TableCell>
+              <TableCell className={classes.tableHeader}>Kategorie</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {filteredData.map((row) => (
               <TableRow
                 key={row.id}
-                style={{
-                  backgroundColor: row.isIncome ? 'lightgreen' : 'lightcoral',
-                }}
+                className={row.isIncome ? classes.incomeRow : classes.expenseRow} // Use conditional classes
               >
                 <TableCell>{row.description}</TableCell>
                 <TableCell>{row.amount}</TableCell>
