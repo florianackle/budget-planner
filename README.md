@@ -33,8 +33,10 @@ Der Budget-Planner unterstützt folgende Funktionen:
 
 # :hourglass: If i had more time
 
-Folgende Ergänzungen würde ich noch machen:
-- 
+## Folgende Ergänzungen würde ich noch machen:
+- Endpoint hinzufügen, dass ein User seinen Account löschen kann (somit wird sein Budget und alle seine Einnahmen und Ausgaben gelöscht)
+- Funktion hinzufügen, dass ein Benutzer seine eigenen Kategorien erstellen kann (Endpoints dafür sind bereits erstellt)
+- Projekt erweitern, dass ein Benutzer mehrere Budgets haben kann (z.B. für verschiedene Konten, oder gemeinsames Budget mit einem anderen User)
 
 # :lock: Copyright
 
