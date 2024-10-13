@@ -5,7 +5,7 @@ Clone the project
 ```
 
 ### start database
-Go to the root directory an rund
+Go to the root directory and run
 ```bash
   docker-compose up --build
 ```
@@ -27,7 +27,7 @@ Install dependencies
 Create .env file
 
 ```bash
-  cp .venv .env
+  cp .env.example .env
 ```
 
 Start the server
