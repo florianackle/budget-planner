@@ -15,28 +15,40 @@ Als Software-Entwickler muss man in der Lage sein, ein Softwareprojekt auf- und 
 Das Projekt ist wie folgt aufgebaut:
 ### Frontend
 - React mit Material-UI :lipstick:
+- Unter ```/frontend/src``` gibt es den Ordner ```/components``` und ```/services``` diese beinhalten folgendes:
+- ```/components```: einzelne Frontend Komponente
+- ```/services```: Dienste für Abfragen aus dem Frontend an das Backend 
 
 ### Backend
 - FastAPI :rocket:
+- Unter ```/backend/app``` wurde das Projekt in folgende Unterordner aufgeteilt:
+- ```/models``` - Datenbank Modelle
+- ```/routers``` - Backend Routen
+- ```/schemas``` - Datenbank Schemas
+- ```/services``` - Dienste für die einzelnen Komponenten (Business-Logik)
+- ```/seeders``` - Datenbank Seeder (z.B. vordefinierte Kategorien)
+- Die Config für die Verbindung zur Datenbank befindet sich in folgenden Files: ```/dependencies.py``` und ```/database.py```
 
-### Datenbank
+### Database
 - PostgreSQL innerhalb Docker-Container :whale2:
+- Das ```docker-compose.yml``` liegt direkt im root Ordner vom Projekt
 
 Der Budget-Planner unterstützt folgende Funktionen:
-- Benutzer Registrierung und Login (mit JWT-Token Integration) :closed_lock_with_key:
+- Benutzer Registrierung und Login (mit JWT-Token Integration `````) :closed_lock_with_key:
 - Eintragen von Einnahmen und Ausgaben :money_with_wings:
 - Kategorisieren von Einnahmen und Ausgaben :bookmark:
-- Einnahmen und Ausgaben anzeigen (kategorisiert oder alle) :scroll:
+- Einnahmen und Ausgaben anzeigen (pro kategorie und typ) :scroll:
 
 # :rocket: clone and run project
 [clone and run project](knowledgebase/CLONE-PROJECT.md)
 
-# :hourglass: If i had more time
+# :hourglass: If I had more time
 
 ## Folgende Ergänzungen würde ich noch machen:
 - Endpoint hinzufügen, dass ein User seinen Account löschen kann (somit wird sein Budget und alle seine Einnahmen und Ausgaben gelöscht)
 - Funktion hinzufügen, dass ein Benutzer seine eigenen Kategorien erstellen kann (Endpoints dafür sind bereits erstellt)
 - Projekt erweitern, dass ein Benutzer mehrere Budgets haben kann (z.B. für verschiedene Konten, oder gemeinsames Budget mit einem anderen User)
+- Pagination für die Einnahmen & Ausgaben Tabelle ergänzen (damit die Liste nicht unendlich lang wird und bei vielen Einträgen weiterhin schnell lädt)
 
 # :lock: Copyright
 
@@ -46,6 +58,6 @@ Sonst... lass die Finger davon :point_left:.
 
 # :date: Last Update
 
-> 10.10.2024
+> 13.10.2024
 
 # :tada: Have fun!
