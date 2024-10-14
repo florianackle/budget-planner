@@ -17,6 +17,8 @@ passlib = "^1.7.4"
 pydantic = "^2.9.2"
 bcrypt = "^4.2.0"
 pyjwt = "^2.9.0"
+pytest = "^8.3.3"
+pytest-cov = "^5.0.0"
 
 
 [build-system]
