@@ -8,7 +8,6 @@ from app.dependencies import get_db
 from app.seeders.category import seed_categories
 from app.models.user import User
 from app.services.user_service import get_password_hash
-from app.services.jwt import create_access_token
 
 
 @fixture()
