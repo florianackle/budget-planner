@@ -20,9 +20,6 @@ def read_user_budget(db: Session = Depends(get_db), current_user = Depends(get_c
 def create_new_budget(db: Session = Depends(get_db), current_user = Depends(get_current_user)):
     return create_budget_for_user(db=db, user_id=current_user.id)
 
-@router.put("/", response_model=Budget)
-def update_existing_budget(budget: BudgetCreate, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
-    return update_budget(db=db, budget=budget, user_id=current_user.id)
 
 @router.delete("/", response_model=dict)
 def delete_existing_budget(db: Session = Depends(get_db), current_user = Depends(get_current_user)):
