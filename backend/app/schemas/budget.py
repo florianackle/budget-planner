@@ -11,6 +11,7 @@ class BudgetCreate(BudgetBase):
 
 class Budget(BudgetBase):
     id: int
+    owner_id: int
     expenses: Optional[List[Income]] = []
     incomes: Optional[List[Expense]] = []
 

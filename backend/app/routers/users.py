@@ -26,5 +26,5 @@ def login_user(user: UserCreate, db: Session = Depends(get_db)):
     if not db_user:
         raise HTTPException(status_code=401, detail="Invalid username or password")
 
-    access_token = create_access_token(user_id=db_user.id)
+    access_token = create_access_token(username=db_user.username)
     return {"access_token": access_token, "token_type": "bearer"}

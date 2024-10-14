@@ -23,12 +23,13 @@ def get_current_user(token: str = Depends(bearer_scheme), db: Session = Depends(
     )
 
     try:
-        # Decode the JWT token to extract the username
+        # Decode the JWT token and extract the username from the sub-Claim
         payload = decode_access_token(token.credentials)
         username: str = payload.get("sub")
         if username is None:
             raise credentials_exception
-    except DecodeError:
+    except Exception as e:
+        print(f"Error during token decoding: {str(e)}")
         raise credentials_exception
 
     # Find the user by the extracted username
