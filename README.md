@@ -49,6 +49,7 @@ Der Budget-Planner unterstützt folgende Funktionen:
 - Funktion hinzufügen, dass ein Benutzer seine eigenen Kategorien erstellen kann (Endpoints dafür sind bereits erstellt)
 - Projekt erweitern, dass ein Benutzer mehrere Budgets haben kann (z.B. für verschiedene Konten, oder gemeinsames Budget mit einem anderen User)
 - Pagination für die Einnahmen & Ausgaben Tabelle ergänzen (damit die Liste nicht unendlich lang wird und bei vielen Einträgen weiterhin schnell lädt)
+- Erweiterte Sicherheit (bessere Validierung für Kennwörter für mehr Komplexität)
 
 # :lock: Copyright
 
@@ -58,6 +59,6 @@ Sonst... lass die Finger davon :point_left:.
 
 # :date: Last Update
 
-> 13.10.2024
+> 14.10.2024
 
 # :tada: Have fun!
