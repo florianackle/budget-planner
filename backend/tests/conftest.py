@@ -1,90 +1,51 @@
-from pytest import fixture
+import pytest
+from fastapi.testclient import TestClient
 from sqlalchemy import StaticPool, create_engine
 from sqlalchemy.orm import sessionmaker
-from app.database import Base
 from app.main import app
+from app.database import Base
 from app.dependencies import get_db
-from fastapi.testclient import TestClient
+from app.seeders.category import seed_categories
 
-from app.models.income import Income
-from app.models.expense import Expense
-from app.models.user import User
+# Setup für die Test-Datenbank
+SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
+engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
+TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
+# Override der Datenbank-Abhängigkeit für Tests
+def override_get_db():
+    try:
+        db = TestingSessionLocal()
+        yield db
+    finally:
+        db.close()
 
-@fixture()
-def db():
-    SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app_test.db"
+app.dependency_overrides[get_db] = override_get_db
 
-    engine = create_engine(
-        SQLALCHEMY_DATABASE_URL,
-        connect_args={"check_same_thread": False},
-        poolclass=StaticPool,
-    )
-    TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-    db_session = TestingSessionLocal()
-
-    # Drop and recreate tables before each test
-    Base.metadata.drop_all(bind=engine)
+@pytest.fixture(scope="module")
+def client():
+    # Erstellen der Test-Datenbank und Seeding der Kategorien
     Base.metadata.create_all(bind=engine)
+    db = TestingSessionLocal()
+    seed_categories(db)
+    db.commit()
+    db.close()
 
-    # Override the get_db dependency to use the test database
-    def override_get_db():
-        try:
-            db = db_session
-            yield db
-        finally:
-            db.close()
+    # Client für Tests
+    with TestClient(app) as c:
+        yield c
 
-    app.dependency_overrides[get_db] = override_get_db
+    # Test-Datenbank nach Tests löschen
+    Base.metadata.drop_all(bind=engine)
 
-    return db_session
+@pytest.fixture()
+def client_authenticated(client):
+    # Authentifizierter Client mit registriertem Benutzer
+    response = client.post("/users/", json={"username": "testuser", "password": "testpassword"})
+    assert response.status_code == 201
 
-
-@fixture()
-def client(db):
-    # Return a test client using the FastAPI app with overridden dependencies
-    return TestClient(app)
-
-@fixture()
-def client_authenticated(client, user_authenticated):
-    user, access_token = user_authenticated
-    client.headers["Authorization"] = f"Bearer {access_token}"
+    login_response = client.post("/users/login", data={"username": "testuser", "password": "testpassword"})
+    assert login_response.status_code == 200
+    token = login_response.json()["access_token"]
+    client.headers["Authorization"] = f"Bearer {token}"
     return client
-
-
-@fixture()
-def user(db):
-    # Create a test user with a hashed password
-    user = User(email="testuser@budget.com", hashed_password=_hash_password("testpassword"))
-    db.add(user)
-    db.commit()
-    return user
-
-
-@fixture()
-def user_authenticated(client, user):
-    # Authenticate the test user and return the user along with the access token
-    response = client.post("/login/", json={"email": user.email, "password": "testpassword"})
-    assert response.status_code == 200
-    data = response.json()
-    access_token = data["access_token"]
-    return user, access_token
-
-
-@fixture()
-def income_for_user(user, db):
-    # Create test income for the user
-    income = Income(amount=5000, description="Salary", user_id=user.id)
-    db.add(income)
-    db.commit()
-    return income
-
-
-@fixture()
-def expense_for_user(user, db):
-    # Create test expenses for the user
-    expense = Expense(amount=1000, description="Rent", user_id=user.id)
-    db.add(expense)
-    db.commit()
-    return expense
