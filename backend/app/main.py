@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from contextlib import asynccontextmanager
 from .routers import users, budgets, expenses, incomes, categories
 from .database import engine, Base
 from .seeders.category import seed_categories
@@ -9,7 +10,13 @@ from .database import SessionLocal
 # Create all tables
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+# Define the lifespan event handler for FastAPI
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    init_db()
+    yield
+
+app = FastAPI(lifespan=lifespan)
 
 # Define frontend as allowed origin
 origins = [
@@ -38,8 +45,3 @@ def init_db():
     db: Session = SessionLocal()
     seed_categories(db)
     db.close()
-
-# Call init_db when the application starts
-@app.on_event("startup")
-def on_startup():
-    init_db()
