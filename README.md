@@ -2,7 +2,7 @@
 
 Schulprojekt von Florian Ackle
 
-# :bookmark: Version
+# :bookmark: Current version
 
 v0.1
 
@@ -12,7 +12,10 @@ Als Software-Entwickler muss man in der Lage sein, ein Softwareprojekt auf- und 
 
 # :sparkles: What can the budget planner do?
 
-### //TODO - ergänzen
+Der "Budget-Planner" ist eine App, die es Benutzern ermöglicht, ihre Einnahmen und Ausgaben zu verwalten und ein Budget zu erstellen. 
+Jede Transaktion kann Kategorien zugeordnet werden, und Benutzer können ihr Budget basierend auf ihren Finanzaktivitäten aktualisieren und nachverfolgen.
+
+#### Track It, Stack It! :money_with_wings: :money_with_wings: :money_with_wings:
 
 Das Projekt ist wie folgt aufgebaut:
 ### Frontend
