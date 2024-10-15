@@ -58,7 +58,6 @@ const AddIncomeExpense = ({ open, handleClose, handleSubmit, refreshTable }) => 
 
     const username = localStorage.getItem('username');  // Get username from local storage
 
-    console.log("Username retrieved from localStorage: ", username);  // Debugging
 
     if (!username) {
       console.error("User ist möglicherweise nicht eingeloggt.");

@@ -49,7 +49,6 @@ const Dashboard = () => {
 
   // Handler for submitting new income or expense
   const handleAddIncomeExpense = async (data) => {
-    console.log('Neue Einnahme/Ausgabe hinzugefügt: ', data);
     setSnackbarMessage('Einnahme/Ausgabe erfolgreich hinzugefügt!');
     setSnackbarSeverity('success');
     setSnackbarOpen(true);
