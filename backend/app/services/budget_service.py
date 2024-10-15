@@ -24,7 +24,7 @@ def update_budget(db: Session, budget: schemas.BudgetCreate, user_id: int):
     # Update budget of the current user
     db_budget = get_user_budget(db, user_id)
     if db_budget:
-        for key, value in budget.dict().items():
+        for key, value in budget.model_dump().items():
             setattr(db_budget, key, value)
         db.commit()
         db.refresh(db_budget)

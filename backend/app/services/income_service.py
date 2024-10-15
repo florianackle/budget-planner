@@ -13,7 +13,7 @@ def get_current_user(db: Session, username: str):
 
 
 def create_income(db: Session, income: schemas.IncomeCreate, user_id: int, budget_id: int):
-    db_income = models.Income(**income.dict(exclude={'budget_id'}), owner_id=user_id, budget_id=budget_id)
+    db_income = models.Income(**income.model_dump(exclude={'budget_id'}), owner_id=user_id, budget_id=budget_id)
     db.add(db_income)
     db.commit()
     db.refresh(db_income)

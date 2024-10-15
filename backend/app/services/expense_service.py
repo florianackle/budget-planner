@@ -13,7 +13,7 @@ def get_current_user(db: Session, username: str):
 
 
 def create_expense(db: Session, expense: schemas.ExpenseCreate, user_id: int, budget_id: int):
-    db_expense = models.Expense(**expense.dict(exclude={'budget_id'}), owner_id=user_id, budget_id=budget_id)
+    db_expense = models.Expense(**expense.model_dump(exclude={'budget_id'}), owner_id=user_id, budget_id=budget_id)
     db.add(db_expense)
     db.commit()
     db.refresh(db_expense)

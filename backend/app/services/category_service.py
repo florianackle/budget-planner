@@ -3,7 +3,7 @@ from .. import models, schemas
 
 
 def create_category(db: Session, category: schemas.CategoryCreate):
-    db_category = models.Category(**category.dict())
+    db_category = models.Category(**category.model_dump())
     db.add(db_category)
     db.commit()
     db.refresh(db_category)
@@ -18,7 +18,7 @@ def get_category(db: Session, category_id: int):
 def update_category(db: Session, category_id: int, category: schemas.CategoryCreate):
     db_category = get_category(db, category_id)
     if db_category:
-        for key, value in category.dict().items():
+        for key, value in category.model_dump().items():
             setattr(db_category, key, value)
         db.commit()
         db.refresh(db_category)
