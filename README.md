@@ -52,6 +52,7 @@ Der Budget-Planner unterstützt folgende Funktionen:
 ## Folgende Ergänzungen würde ich noch machen:
 - Endpoint hinzufügen, dass ein User seinen Account löschen kann (somit wird sein Budget und alle seine Einnahmen und Ausgaben gelöscht)
 - Funktion für das Ausloggen eines Benutzers hinzufügen
+- Dem Benutzer erlauben, dass er seine Income und Expenses editieren und löschen kan
 - Funktion hinzufügen, dass ein Benutzer seine eigenen Kategorien erstellen kann (Endpoints dafür sind bereits erstellt)
 - Projekt erweitern, dass ein Benutzer mehrere Budgets haben kann (z.B. für verschiedene Konten, oder gemeinsames Budget mit einem anderen User)
 - Pagination für die Einnahmen & Ausgaben Tabelle ergänzen (damit die Liste nicht unendlich lang wird und bei vielen Einträgen weiterhin schnell lädt)
