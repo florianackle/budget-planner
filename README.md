@@ -12,6 +12,8 @@ Als Software-Entwickler muss man in der Lage sein, ein Softwareprojekt auf- und 
 
 # :sparkles: What can the budget planner do?
 
+### //TODO - ergänzen
+
 Das Projekt ist wie folgt aufgebaut:
 ### Frontend
 - React mit Material-UI :lipstick:
@@ -34,7 +36,7 @@ Das Projekt ist wie folgt aufgebaut:
 - Das ```docker-compose.yml``` liegt direkt im root Ordner vom Projekt
 
 Der Budget-Planner unterstützt folgende Funktionen:
-- Benutzer Registrierung und Login (mit JWT-Token Integration `````) :closed_lock_with_key:
+- Benutzer Registrierung und Login (mit JWT Integration) :closed_lock_with_key:
 - Eintragen von Einnahmen und Ausgaben :money_with_wings:
 - Kategorisieren von Einnahmen und Ausgaben :bookmark:
 - Einnahmen und Ausgaben anzeigen (pro kategorie und typ) :scroll:
@@ -46,10 +48,12 @@ Der Budget-Planner unterstützt folgende Funktionen:
 
 ## Folgende Ergänzungen würde ich noch machen:
 - Endpoint hinzufügen, dass ein User seinen Account löschen kann (somit wird sein Budget und alle seine Einnahmen und Ausgaben gelöscht)
+- Funktion für das Ausloggen eines Benutzers hinzufügen
 - Funktion hinzufügen, dass ein Benutzer seine eigenen Kategorien erstellen kann (Endpoints dafür sind bereits erstellt)
 - Projekt erweitern, dass ein Benutzer mehrere Budgets haben kann (z.B. für verschiedene Konten, oder gemeinsames Budget mit einem anderen User)
 - Pagination für die Einnahmen & Ausgaben Tabelle ergänzen (damit die Liste nicht unendlich lang wird und bei vielen Einträgen weiterhin schnell lädt)
 - Erweiterte Sicherheit (bessere Validierung für Kennwörter für mehr Komplexität)
+- Weitere Backend Tests mit erweiterten Cases
 
 # :lock: Copyright
 
@@ -59,6 +63,10 @@ Sonst... lass die Finger davon :point_left:.
 
 # :date: Last Update
 
-> 14.10.2024
+> 15.10.2024
+
+# Authors
+
+- [@florianackle](https://www.github.com/florianackle)
 
 # :tada: Have fun!
