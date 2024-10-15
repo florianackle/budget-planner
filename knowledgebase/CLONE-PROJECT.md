@@ -60,3 +60,16 @@ Start the server
 After running the commands above you can connect to the front- and backend
 - Frontend: http://localhost:3000
 - Backend: http://localhost:8000/docs
+
+### testing
+Go to the backend directory (/backend)
+
+```bash
+  cd budget-planner\backend
+```
+
+Run the tests with coverage
+
+```bash
+  poetry run pytest --cov=app
+```
