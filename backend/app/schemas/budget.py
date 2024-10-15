@@ -15,5 +15,4 @@ class Budget(BudgetBase):
     expenses: Optional[List[Income]] = []
     incomes: Optional[List[Expense]] = []
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
