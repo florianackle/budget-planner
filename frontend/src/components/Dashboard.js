@@ -86,7 +86,6 @@ const Dashboard = () => {
               Dein aktuelles Budget
             </Typography>
             <Paper elevation={3} sx={{ padding: 2 }}>
-              {/* Flexbox-Container, um den Betrag und den Button nebeneinander zu platzieren */}
               <Box display="flex" justifyContent="space-between" alignItems="center">
                 <Typography variant="h5" align="center">CHF {budget.total_amount}</Typography>
                 <Button
