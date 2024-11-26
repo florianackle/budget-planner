@@ -1,0 +1,10 @@
+steps:
+  - id: "Run Tests"
+    name: python:3.12-slim
+    entrypoint: bash
+    args:
+      - "-c"
+      - "pip install poetry && poetry install && poetry run pytest"
+
+options:
+  logging: CLOUD_LOGGING_ONLY
