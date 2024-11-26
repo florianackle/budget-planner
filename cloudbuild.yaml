@@ -4,7 +4,7 @@ steps:
     entrypoint: bash
     args:
       - "-c"
-      - "pip install poetry && poetry install && poetry run pytest"
+      - "cd backend && pip install poetry && poetry install && poetry run pytest"
 
 options:
   logging: CLOUD_LOGGING_ONLY
