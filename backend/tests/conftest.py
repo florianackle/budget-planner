@@ -13,10 +13,10 @@ from app.services.jwt import create_access_token
 
 @fixture()
 def db():
-    SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app_test.db"
+    sqlalchemy_db_url = "sqlite:///./sql_app_test.db"
 
     engine = create_engine(
-        SQLALCHEMY_DATABASE_URL,
+        sqlalchemy_db_url,
         connect_args={"check_same_thread": False},
         poolclass=StaticPool,
     )
