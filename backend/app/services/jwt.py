@@ -7,7 +7,9 @@ load_dotenv()
 SECRET = os.getenv("SECRET_KEY")
 
 if not SECRET:
-    raise ValueError("SECRET_KEY ist in der .env Datei nicht gesetzt")
+    SECRET = "HalloPhilippThisIsSecret"
+    # raise ValueError("SECRET_KEY ist in der .env Datei nicht gesetzt")
+
 
 def create_access_token(username: str):
     encoded_jwt = jwt.encode({"sub": username}, SECRET, algorithm="HS256")
