@@ -11,7 +11,7 @@ SQLALCHEMY_DATABASE_URL = os.getenv("SQLALCHEMY_DATABASE_URL")
 
 if not SQLALCHEMY_DATABASE_URL:
     # raise ValueError("Fehler: Die Umgebungsvariable SQLALCHEMY_DATABASE_URL ist nicht gesetzt.")
-    SQLALCHEMY_DATABASE_URL = "postgresql://db_user:db_password@localhost:5432/budget_planner"
+    SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 # Create database engine for connection
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
 
