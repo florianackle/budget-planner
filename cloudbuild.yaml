@@ -4,7 +4,7 @@ steps:
     entrypoint: bash
     args:
       - "-c"
-      - "pip install poetry && poetry install && poetry run pytest"
+      - "cd backend && pip install poetry && poetry install && poetry run pytest"
 
   - id: "Build Docker Image"
     name: "gcr.io/cloud-builders/docker"
