@@ -9,6 +9,6 @@ WORKDIR /backend/app
 COPY --from=builder /tmp/requirements.txt .
 RUN pip install -r requirements.txt
 RUN rm requirements.txt
-COPY ./app /app
+COPY ./backend/app /app
 ENTRYPOINT ["fastapi", "run", "main.py"]
 EXPOSE 8000
