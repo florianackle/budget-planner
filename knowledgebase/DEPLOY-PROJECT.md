@@ -135,7 +135,7 @@ Suche in der Google Cloud Konsole dazu nach **IAM** und füge deinem Dienstkonto
 
 ---
 
-## 9. Projekt deployen und testen
+## 8. Projekt deployen und testen
 
 Nachdem die IAM-Settings gemacht wurden und die Konfiguration-Files (`cloudbuild.yaml` und `Dockerfile`) gepusht sind, ist das Projekt erfolgreich deployed.
 Bei Problemen kann der Status des Builds beziehungsweise die Fehlermeldung in der Google Cloud Console überprüft werden.
@@ -151,7 +151,7 @@ Nach erfolgreichem Deployment ist die Applikation unter der bereitgestellten URL
 
 ---
 
-## 10. Herausforderungen und Lösungen
+## 9. Herausforderungen und Lösungen
 
 Während der Implementierung gab es einige Herausforderungen.
 Eine der grössten Schwierigkeiten bestand darin, dass das Projekt nicht direkt im Root-Verzeichnis, sondern im Unterverzeichnis `/backend` lag. 
