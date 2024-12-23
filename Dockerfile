@@ -1,14 +1,13 @@
 FROM python:3.12-slim AS builder
 WORKDIR /tmp
-RUN pip install uv
-COPY ./backend/pyproject.toml uv.lock ./
-RUN uv export --no-dev --no-hashes --no-header --frozen > requirements.txt
+RUN pip install poetry
+COPY ./backend/pyproject.toml ./backend/poetry.lock ./
+RUN poetry export -f requirements.txt --output requirements.txt --without-hashes --without dev
 
 FROM python:3.12-slim
-WORKDIR /backend/app
+WORKDIR /app
 COPY --from=builder /tmp/requirements.txt .
 RUN pip install -r requirements.txt
-RUN rm requirements.txt
-COPY ./app /app
-ENTRYPOINT ["fastapi", "run", "main.py"]
+COPY ./backend/app /app
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 EXPOSE 8000
