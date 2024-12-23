@@ -5,7 +5,7 @@ COPY ./backend/pyproject.toml ./backend/poetry.lock ./
 RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 
 FROM python:3.12-slim
-WORKDIR /app
+WORKDIR /backend/app
 COPY --from=builder /tmp/requirements.txt .
 RUN pip install -r requirements.txt
 RUN rm requirements.txt
