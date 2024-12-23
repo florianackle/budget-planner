@@ -13,7 +13,7 @@ if not SQLALCHEMY_DATABASE_URL:
     # raise ValueError("Fehler: Die Umgebungsvariable SQLALCHEMY_DATABASE_URL ist nicht gesetzt.")
     SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 # Create database engine for connection
-engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
+engine = create_engine("sqlite:///./sql_app.db", echo=True)
 
 # SessionLocal for managing current sessions
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
