@@ -2,7 +2,7 @@ FROM python:3.12-slim AS builder
 WORKDIR /tmp
 RUN pip install poetry
 COPY ./backend/pyproject.toml ./backend/poetry.lock ./
-RUN poetry export -f requirements.txt --output requirements.txt --without-hashes --without dev
+RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 
 FROM python:3.12-slim
 WORKDIR /app
