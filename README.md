@@ -47,6 +47,9 @@ Der Budget-Planner unterstützt folgende Funktionen:
 # :rocket: clone and run project
 [clone and run project](knowledgebase/CLONE-PROJECT.md)
 
+# :cloud: deploy backend to Google-Cloud
+[deploy project to google cloud](knowledgebase/DEPLOY-PROJECT.md)
+
 # :hourglass: If I had more time
 
 ## Folgende Ergänzungen würde ich noch machen:
@@ -67,7 +70,7 @@ Sonst... lass die Finger davon :point_left:.
 
 # :date: Last Update
 
-> 15.10.2024
+> 23.12.2024
 
 # Authors
 
