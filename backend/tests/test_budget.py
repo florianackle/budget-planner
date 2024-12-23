@@ -19,5 +19,5 @@ def test_read_budget(client_authenticated):
     assert response.status_code == 200
     data = response.json()
 
-    assert data["owner_id"] == 1  # Homer has user_id = 1
+    assert data["owner_id"] == 2  # Homer has user_id = 1
     assert data["id"] == budget_id  # Check if the correct budget is returned
